@@ -11,7 +11,8 @@ fs.rmSync(stage, {recursive: true, force: true});
 fs.mkdirSync(stage, {recursive: true});
 fs.cpSync('extension', `${stage}/extension`, {recursive: true, filter: file => !file.endsWith('.DS_Store')});
 for (const file of ['manifest.json', 'README.md', 'PRIVACY.md', 'LICENSE']) fs.copyFileSync(file, `${stage}/${file}`);
-const archive = `同频-Chrome插件-v${version}.zip`;
+// ASCII archive names remain intact when GitHub hosts release assets.
+const archive = `samewave-chrome-v${version}.zip`;
 const output = `dist/${archive}`;
 fs.rmSync(output, {force: true});
 execFileSync('/usr/bin/zip', ['-qr', archive, folder, '-x', '*/.DS_Store'], {cwd: 'dist'});
