@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>同频 · 让好内容，多一次抵达</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><img src="icons/icon48.png" alt="同频信使小鸟"><span>同频<small>SAMEWAVE</small></span></a>
+    <div class="nav-label">工作空间</div>
+    <nav><a class="active" href="#overview"><span>◫</span>同步工作台</a><a href="#accounts"><span>◎</span>账号连接</a><a href="#rules"><span>☷</span>同步偏好</a><a href="#history"><span>◷</span>同步记录</a></nav>
+    <div class="sidebar-bottom"><span class="local-dot"></span> 只在你的浏览器中运行<p>密钥本地保存 · 无中转服务器</p><button class="text-button" id="openHelp">安装与使用指南 ↗</button><div class="version">同频 v1.0.4 <span>MADE FOR CREATORS</span></div><a class="creator-link" href="https://x.com/shangshuss" target="_blank" rel="noopener noreferrer" title="在 X 关注 @shangshuss" aria-label="在 X 打开作者 shangshuss 的主页"><img src="icons/x.svg" alt="" width="16" height="16"><span>@shangshuss</span><span aria-hidden="true">↗</span></a></div>
+  </aside>
+  <main id="overview">
+    <header><div class="breadcrumb">工作空间 <span>/</span> 同步工作台</div><div class="header-actions"><span class="pill" id="modePill">本地模式</span><button class="button small secondary" id="togglePause">暂停同步</button></div></header>
+    <section class="heading"><div><div class="eyebrow">CREATE ONCE. CONNECT MORE.</div><h1>让好内容，多一次抵达<span>。</span></h1><p>在 X 分享想法，同频帮你送到币安广场。</p></div><span class="today" id="today"></span></section>
+    <div class="notice hidden" id="previewNotice">这是界面预览。安装 Chrome 插件后，即可保存设置并开始自动同步。</div>
+    <div class="notice warning hidden" id="diagnostic"></div>
+    <section class="hero">
+      <div class="hero-copy"><span class="eyebrow">你的内容，有了专属信使</span><h2>一次发布。<br>两边同频。</h2><p>文字、图片、视频，按你的节奏同步。</p><div class="route"><span class="x-logo">𝕏</span><span class="route-line">••••• <b>→</b> •••••</span><span class="square-logo">❖</span><span>Binance Square</span></div></div>
+      <img class="hero-mascot" src="icons/avatar.png" alt="同频信使：带着纸飞机翅膀的小鸟"><div class="hero-badge"><span>✦</span> 把重复的事，交给同频</div>
+    </section>
+    <section class="stats"><div><span>已同步</span><strong id="statSent">0<small>篇</small></strong><i class="stat-icon green">↗</i></div><div><span>排队与处理中</span><strong id="statPending">0<small>篇</small></strong><i class="stat-icon blue">⇄</i></div><div><span>需要关注</span><strong id="statAttention">0<small>篇</small></strong><i class="stat-icon amber">!</i></div></section>
+    <form id="settingsForm">
+      <div class="columns"><div class="main-column">
+        <section class="card" id="accounts"><div class="card-heading"><div><span class="section-number">01</span><h2>连接你的账号</h2></div><span class="tag">仅保存在本机</span></div><p class="section-description">连接一次，之后照常在 X 发布就好。</p>
+          <label class="field-label" for="handle">X 用户名 <span>同步来源</span></label><div class="input-wrap"><span class="input-prefix">@</span><input id="handle" name="handle" autocomplete="off" spellcheck="false" maxlength="16" placeholder="例如 shangshuss" required></div><p class="field-help">填写个人主页中 @ 后的用户名，不是显示昵称或数字 UID。</p>
+          <div class="label-row"><label class="field-label" for="apiKey">币安广场 API Key <span>发布目标</span></label><a href="https://www.binance.com/square/creator-center/home" target="_blank" rel="noreferrer">获取 API ↗</a></div>
+          <div class="input-wrap key-input"><span class="input-prefix">⌘</span><input id="apiKey" type="password" autocomplete="new-password" spellcheck="false" placeholder="粘贴你的广场发帖 API Key"><button type="button" class="reveal" id="revealKey" aria-label="显示或隐藏新输入的 API Key">显示</button></div>
+          <div class="key-actions"><span id="keyState">尚未配置 API</span><div><button type="button" class="text-button" id="checkKey">检测连接</button><button type="button" class="text-button danger hidden" id="removeKey">移除</button></div></div><div id="connectionResult" class="connection-result hidden" role="status" aria-live="polite"></div><p class="field-help">API 已绑定广场账号，无需再填写广场 UID。检测连接不会发帖。</p>
+        </section>
+        <section class="card" id="rules"><div class="card-heading"><div><span class="section-number">02</span><h2>什么内容值得同频</h2></div><span class="tag">自由选择</span></div><p class="section-description">勾选你希望自动同步的帖子类型。</p>
+          <div class="rule-list">
+            <label class="rule"><span class="rule-icon">✎</span><span class="rule-copy"><b>原创帖子</b><small>你独立发布的想法、图文和视频</small></span><input type="checkbox" id="syncOriginals" class="switch" checked></label>
+            <label class="rule"><span class="rule-icon">❞</span><span class="rule-copy"><b>引用帖子</b><small>同步你的评论，并保留被引用帖的链接</small></span><input type="checkbox" id="syncQuotes" class="switch"></label>
+            <label class="rule"><span class="rule-icon">↳</span><span class="rule-copy"><b>回复与串文</b><small>每条回复单独同步，并附上所回复的链接</small></span><input type="checkbox" id="syncReplies" class="switch"></label>
+            <label class="rule"><span class="rule-icon">⇄</span><span class="rule-copy"><b>纯转发</b><small>只分享原帖链接，不搬运他人的正文与附件</small></span><input type="checkbox" id="syncReposts" class="switch"></label>
+          </div>
+          <div class="divider"></div><label class="field-label">内容形式</label><div class="media-choices"><label><input id="syncText" type="checkbox" checked><span> Aa </span>纯文字</label><label><input id="syncImages" type="checkbox" checked><span> ▧ </span>图片帖</label><label><input id="syncVideos" type="checkbox" checked><span> ▷ </span>视频帖</label></div><p class="field-help">关闭某种形式后，会跳过整条帖子，不会只发缺少附件的正文。</p>
+          <label class="rule source-rule"><span class="rule-copy"><b>附上 X 原帖链接</b><small>在同步内容末尾保留一个回到 X 的入口</small></span><input type="checkbox" id="appendSource" class="switch"></label>
+        </section>
+      </div><aside class="right-column">
+        <section class="card status-card"><div class="card-heading"><h2>同步状态</h2><span class="status-dot" id="statusDot"></span></div><div class="status-title" id="statusTitle">还差一步，就能同频</div><p id="statusDescription">填写账号与 API，选择偏好，然后开启自动同步。</p><label class="enable-row"><span>自动同步</span><input type="checkbox" class="switch" id="enabled"></label><div class="status-meta"><span>最近捕捉到新帖</span><b id="lastCapture">等待第一条新帖</b></div></section>
+        <section class="card how-card"><span class="eyebrow">轻松开始</span><h2>保持你的发布习惯</h2><ol><li><span>1</span><div><b>在 X 发布</b><p>使用装有同频的 Chrome。</p></div></li><li><span>2</span><div><b>同频自动接力</b><p>X 确认成功后，按偏好同步。</p></div></li><li><span>3</span><div><b>在广场相遇</b><p>在下方记录查看同步结果。</p></div></li></ol><div class="soft-note">只捕捉启用后的新帖。手机发帖、定时发布和历史内容不自动补发。</div></section>
+        <section class="share-card"><span>↗</span><h3>好工具，也值得分享</h3><p>每个人都能设置自己的账号。导出的偏好不包含 API 密钥。</p><div><button type="button" class="text-button" id="exportSettings">导出偏好 ↗</button><button type="button" class="text-button" id="importSettings">导入</button></div><input type="file" id="importFile" accept="application/json,.json" hidden></section>
+      </aside></div>
+      <div class="save-bar"><div><span class="local-dot"></span><span id="saveHint">偏好只对新捕捉的帖子生效</span></div><button class="button primary" type="submit" id="saveButton">保存设置 <span>↗</span></button></div>
+    </form>
+    <section class="card history-card" id="history"><div class="card-heading"><div><span class="section-number">03</span><h2>每一次抵达，都有记录</h2></div><button class="text-button" id="refresh">刷新 ↻</button></div><div class="history-tabs" role="group" aria-label="筛选同步记录"><button data-filter="all" class="selected">全部</button><button data-filter="sent">已同步</button><button data-filter="pending">处理中</button><button data-filter="attention">需关注</button></div><div id="jobs"></div><p class="history-footnote">遇到结果不确定的发布，会暂停并提示核对，避免重复发帖。</p></section>
+    <footer>同频 SAMEWAVE <span>为每一次认真分享而做。</span><span>独立工具 · 非 X 或币安官方产品</span></footer>
+  </main>
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  <dialog id="help"><button class="dialog-close" id="closeHelp" aria-label="关闭">×</button><span class="eyebrow">WELCOME TO SAMEWAVE</span><h2>三分钟，开始同频</h2><ol><li>打开 Chrome 扩展程序管理页，启用「开发者模式」。</li><li>点击「加载已解压的扩展程序」，直接选择解压后的整个「同频-Chrome插件」文件夹。</li><li>填写 X 用户名和广场 API，选择同步偏好，打开「自动同步」并保存。</li><li>刷新已打开的 X 页面，之后照常发帖。</li></ol><p>不必进入任何子文件夹。分享给朋友时发送安装压缩包即可，密钥只保存在各自 Chrome 中。</p><p>已经安装旧版时，在扩展管理页点击同频的「重新加载」，然后刷新设置页即可保留设置。请勿同时启用两份同频，以免重复发送。</p><p>目前支持最多 4 张图片或 1 个视频；投票、混合媒体和 X 文章会暂停提示。未完成同步时请保持 Chrome 打开。</p><p>网页接口变化可能需要更新插件。移除插件会同时移除本机设置和去重记录。</p></dialog>
+  <script type="module" src="options.js"></script>
+</body></html>

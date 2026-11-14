@@ -1,0 +1,4 @@
+Generated with the built-in image_gen tool, 2026-11-14.
+Project asset: design/avatar-original.png
+
+Use case: logo-brand. Asset type: square app avatar and Chrome extension icon for a personal social-post syncing utility. Primary request: create an exceptionally polished friendly tiny messenger bird mascot, abstract and geometric, conveying sending one post to two places. One plump small bird, creamy white rounded body, dark charcoal face patch with two bright expressive eyes, small warm golden-yellow beak, and a swept single golden wing shaped like a paper airplane. Bold confident silhouette, refined soft 3D clay material with subtle studio shading, clean designer toy aesthetic, warm sunny yellow solid square backdrop, centered bust filling about 80 percent of image, generous safe margin, recognizable at 32 pixels. No lettering, no logo text, no X or Binance symbols, no additional objects, no watermark, no mockup grid. One icon only. Square 1024 by 1024.

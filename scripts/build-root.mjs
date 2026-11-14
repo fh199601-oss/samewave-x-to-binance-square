@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+const root = JSON.parse(fs.readFileSync('extension/manifest.json', 'utf8'));
+const prefix = file => `extension/${file}`;
+root.background.service_worker = prefix(root.background.service_worker);
+root.options_page = prefix(root.options_page);
+root.action.default_popup = prefix(root.action.default_popup);
+root.icons = Object.fromEntries(Object.entries(root.icons).map(([size, file]) => [size, prefix(file)]));
+root.action.default_icon = Object.fromEntries(Object.entries(root.action.default_icon).map(([size, file]) => [size, prefix(file)]));
+root.content_scripts = root.content_scripts.map(script => ({...script, js: script.js.map(prefix)}));
+fs.writeFileSync('manifest.json', JSON.stringify(root, null, 2) + '\n');
+console.log('Root manifest generated; select the whole project folder to install.');

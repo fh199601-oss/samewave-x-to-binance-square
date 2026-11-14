@@ -1,0 +1,16 @@
+.private/
+*.log
+node_modules/
+dist/
+.DS_Store
+backups/
+.env
+.env.*
+*.pem
+*.key
+*.local.json
+samewave-preferences*.json
+scripts/update-installed-copy.mjs
+design/*
+!design/avatar-original.png
+!design/avatar-prompt.txt

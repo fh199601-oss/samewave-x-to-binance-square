@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "同频 · X → 币安广场",
+  "version": "1.0.4",
+  "description": "在 Chrome 发布自己的 X 新帖后，自动同步文字、图片和视频到币安广场。",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "alarms", "offscreen"],
+  "host_permissions": [
+    "https://www.binance.com/*",
+    "https://pbs.twimg.com/*",
+    "https://video.twimg.com/*",
+    "https://*.amazonaws.com/*",
+    "https://*.bnbstatic.com/*"
+  ],
+  "background": {"service_worker": "background.js", "type": "module"},
+  "icons": {"16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png"},
+  "action": {"default_title": "同频 · 设置与同步记录", "default_icon": {"16": "icons/icon16.png", "32": "icons/icon32.png"}, "default_popup": "popup.html"},
+  "options_page": "options.html",
+  "content_scripts": [
+    {"matches": ["https://x.com/*", "https://www.x.com/*", "https://twitter.com/*"], "js": ["bridge.js"], "run_at": "document_start", "world": "ISOLATED"},
+    {"matches": ["https://x.com/*", "https://www.x.com/*", "https://twitter.com/*"], "js": ["parser.js", "page-hook.js"], "run_at": "document_start", "world": "MAIN"}
+  ],
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"}
+}
